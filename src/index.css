@@ -30,7 +30,7 @@
 
 .app__bg {
     background-size: cover;
-    background: url('./assets/bg.png') repeat fixed center;
+    background: url('Assets/bg.png') repeat fixed center;
 }
 
 .slick-active {
@@ -96,6 +96,30 @@
     left: 0;
     width: 100%;
     z-index: 1000;
+}
+
+@media (min-width: 1025px) {
+    .grid-container {
+        gap: 3vw;
+    }
+}
+
+@media (max-width: 1024px) {
+    .grid-container {
+        gap: 4vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .grid-container {
+        gap: 4vw;
+    }
+}
+
+@media (max-width: 525px) {
+    .grid-container {
+        gap: 5vw;
+    }
 }
 
 

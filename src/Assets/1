@@ -1,0 +1,83 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+public class TvSeriesApiExample {
+    public static List<String> showsInProduction(int startYear, int endYear) {
+        List<String> result = new ArrayList<>();
+
+        try {
+            int totalPages = 1; // Initial value
+            int currentPage = 1;
+
+            // Continue iterating over pages until reaching the last page
+            while (currentPage <= totalPages) {
+                // Build the URL for the current page
+                URL url = new URL("https://jsonmock.hackerrank.com/api/tvseries?page=" + currentPage);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                connection.setRequestMethod("GET");
+
+                // Read the response from the input stream
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                // Parse the JSON response
+                JSONParser jsonParser = new JSONParser();
+                JSONObject jsonResponse = (JSONObject) jsonParser.parse(response.toString());
+
+                // Extract the total number of pages (totalPages)
+                totalPages = Integer.parseInt(jsonResponse.get("total_pages").toString());
+
+                // Extract the data array from the current page
+                JSONArray data = (JSONArray) jsonResponse.get("data");
+
+                // Iterate over the array and check if the show is in production within the specified range
+                for (Object obj : data) {
+                    JSONObject show = (JSONObject) obj;
+                    String startYearString = ((String) show.get("runtime_of_series")).substring(1, 5);
+                    int startYearOfSeries = Integer.parseInt(startYearString);
+
+                    // Check if the show is in the specified year range
+                    if (startYearOfSeries >= startYear && (endYear == 0 || startYearOfSeries <= endYear)) {
+                        result.add((String) show.get("name"));
+                    }
+                }
+
+                // Move to the next page
+                currentPage++;
+
+                // Close the connection
+                connection.disconnect();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        // Specify the desired year range
+        int startYear = 2000;
+        int endYear = 2022;
+
+        // Get the list of shows in production within the specified year range
+        List<String> shows = showsInProduction(startYear, endYear);
+
+        // Print the result
+        System.out.println("Shows in production between " + startYear + " and " + endYear + ": " + shows);
+    }
+}
