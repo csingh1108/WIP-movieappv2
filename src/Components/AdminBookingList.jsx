@@ -60,7 +60,7 @@ const AdminBookingList = ({filteredBookings}) => {
 
     const DeletionMsg = () => (
         <div className="flex flex-col">
-            <p>Are you sure you want to delete this user?</p>
+            <p>Are you sure you want to delete this booking?</p>
             <div className="flex flex-row justify-around mt-8">
                 <button
                     type="button"

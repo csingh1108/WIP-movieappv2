@@ -31,7 +31,7 @@ const FeaturedSlide = () => {
 
     var settings = {
         infinite: true,
-        speed: 500,
+        speed: 750,
         slidesToShow: 3,
         slidesToScroll: 1,
         initialSlide: 1,
@@ -70,7 +70,7 @@ const FeaturedSlide = () => {
         <section id="home" className={`flex flex-col ${styles.paddingY} sm:mt-0 mt-12`}>
             <h1 className="text-white font-playfair font-bold text-[32px] mb-2">Featured Movies</h1>
             <div className="border-b-[1px] mb-12 w-80%" />
-            <div className="text-center featured__content">
+            <div className="text-center featured__content sm:mt-0 mt-6">
                 <Slider {...settings}>
                     {data.getAllMovies.filter(movie => movie.isFeatured).map((movie) => (
                         <div
@@ -80,7 +80,7 @@ const FeaturedSlide = () => {
                             <img
                                 src={movie.imgUrl}
                                 alt={`movie poster for ${movie.title}`}
-                                className={`lg:w-[310px] w-[200px] my-0 mx-auto`}
+                                className={`lg:w-[310px] w-[200px] h-[475px] my-0 mx-auto`}
                             />
                             <div className="flex flex-col mt-3 justify-center items-center">
                                 <h1 className="text-white font-montserrat font-semibold w-[300px] ">{movie.title}</h1>

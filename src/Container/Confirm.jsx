@@ -98,7 +98,7 @@ const Confirm = () => {
                                 </div>
                             </div>
                             {pickedSeatsContext ? (
-                                <p className="text-dimWhite mt-6 italic">Seats: {pickedSeatsContext.join(', ')}</p>):
+                                <p className="text-dimWhite mt-8 italic">Seats: {pickedSeatsContext.join(', ')}</p>):
                                 (<p className="h-[30px]"></p>)}
                             <div className="flex sm:justify-end justify-center sm:mt-0 mt-4">
                                 <button

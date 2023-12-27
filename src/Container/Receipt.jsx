@@ -39,7 +39,7 @@ const Receipt = () => {
                         alt={`movie poster for ${title}`}
                         className={`lg:w-[310px] w-[200px] my-0 mx-auto`}
                     />
-                    <div className="flex flex-col font-montserrat">
+                    <div className="flex flex-col font-montserrat text-white">
                         <h2 className="font-bold mb-4 font-playfair">Thank You for Your Purchase!</h2>
                         <p className="text-secondary ">Movie: {title}</p>
                         <p>Date: {formatDate(date)}</p>
@@ -53,13 +53,15 @@ const Receipt = () => {
                     </div>
                 </div>
             </div>
-            <button
-                type="button"
-                onClick={goToHome}
-                className="rounded-full px-2 py-1 bg-black text-white border-white border-[2px] w-[120px] h-[50px] hover:border-red-500 hover:text-red-500 font-montserrat font-bold "
-            >
-                Exit
-            </button>
+            <div className="flex justify-center text-center items-center">
+                <button
+                    type="button"
+                    onClick={goToHome}
+                    className="rounded-full px-2 py-1 bg-black text-white border-white border-[2px] w-[120px] h-[50px] hover:border-red-500 hover:text-red-500 font-montserrat font-bold "
+                >
+                    Exit
+                </button>
+            </div>
             <div className={`${styles.paddingX} ${styles.flexCenter} bg-primary mt-12`}>
                 <div className={styles.boxWidth}>
                     <Footer/>
